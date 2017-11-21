@@ -1,8 +1,10 @@
 language: ruby
 cache: bundler
 rvm:
-- 2.3.0
+- 2.4.1
 sudo: false
+env:
+  - AWS_REGION: us-west-2
 deploy:
   provider: rubygems
   gem:
