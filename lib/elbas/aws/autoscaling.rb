@@ -3,7 +3,6 @@ module Elbas
     # Provide AutoScaling client, resource, and group information
     module AutoScaling
       extend ActiveSupport::Concern
-      include Elbas::Aws::Credentials
       include Capistrano::DSL
 
       def autoscaling_client
@@ -26,6 +25,18 @@ module Elbas
         @_autoscaling_client = nil
         @_autoscaling_resource = nil
         @_autoscaling_group = nil
+      end
+
+      private
+
+      def credentials
+        _credentials = {
+          access_key_id:     fetch(:aws_access_key_id,     ENV['AWS_ACCESS_KEY_ID']),
+          secret_access_key: fetch(:aws_secret_access_key, ENV['AWS_SECRET_ACCESS_KEY']),
+          region:            fetch(:aws_region,            ENV['AWS_REGION'])
+        }
+        _credentials.merge! region: fetch(:region) if fetch(:region)
+        _credentials
       end
     end
   end

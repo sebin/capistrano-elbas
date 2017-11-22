@@ -13,5 +13,7 @@ require 'elbas/aws_resource'
 require 'elbas/ami'
 require 'elbas/launch_configuration'
 
+require 'byebug'
+
 module Elbas
 end

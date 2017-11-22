@@ -2,8 +2,11 @@ require 'webmock'
 require 'capistrano/all'
 require 'elbas'
 require 'webmock/rspec'
+require 'dotenv'
 
 WebMock.disable_net_connect!
+
+Dotenv.load
 
 Dir[File.join(File.expand_path('../..', __FILE__), 'spec', 'support', '**', '*.rb')].each { |f| require f }
 

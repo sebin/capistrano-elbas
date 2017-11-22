@@ -19,7 +19,7 @@ module Elbas
     private
 
     def base_ec2_instance
-      autoscaling_group.instances[0]
+      autoscaling_group.instances.first
     end
 
     def environment
