@@ -18,6 +18,8 @@ module Elbas
           image_id: ami.aws_counterpart.id,
           instance_type: instance_size,
           security_groups: ec2_instance.security_groups.map(&:group_id),
+          iam_instance_profile: fetch(:aws_iam_profile, nil),
+          spot_price: fetch(:aws_spot_price, nil),
           associate_public_ip_address:
             fetch(:aws_launch_configuration_associate_public_ip, true),
           instance_monitoring: {
